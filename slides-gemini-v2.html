@@ -33,6 +33,12 @@
     </style>
 </head>
 <body>
+    <!-- Background Music -->
+    <audio id="bgm-1" src="musics/星辰下的远古记忆.mp3" loop preload="auto"></audio>
+    <audio id="bgm-2" src="musics/宇宙与家园.mp3" loop preload="auto"></audio>
+    <audio id="bgm-3" src="musics/从石头到智能.mp3" loop preload="auto"></audio>
+    <audio id="bgm-4" src="musics/希望之树.mp3" loop preload="auto"></audio>
+
     <canvas id="audio-visualizer"></canvas>
     <div class="reveal">
         <div class="slides">
@@ -371,8 +377,89 @@
 
         animationLoop();
 
+        // --- Background Music Logic ---
+        const bgmTracks = {
+            1: document.getElementById('bgm-1'),
+            2: document.getElementById('bgm-2'),
+            3: document.getElementById('bgm-3'),
+            4: document.getElementById('bgm-4')
+        };
+        
+        let currentBgmIndex = 0;
+        let isBgmPlaying = false;
+
+        function getBgmIndexForSlide(h) {
+            if (h <= 2) return 1;
+            if (h <= 5) return 2;
+            if (h <= 7) return 3;
+            return 4;
+        }
+
+        function playMusic(index) {
+            if (bgmTracks[index]) {
+                bgmTracks[index].volume = 1;
+                bgmTracks[index].play().catch(e => console.log("Play failed:", e));
+            }
+        }
+
+        function fadeOut(audio) {
+            const localFade = setInterval(function () {
+                if (audio.volume > 0.05) {
+                    audio.volume -= 0.05;
+                } else {
+                    audio.volume = 0;
+                    audio.pause();
+                    audio.currentTime = 0;
+                    clearInterval(localFade);
+                }
+            }, 50);
+        }
+
+        function fadeIn(audio) {
+            audio.volume = 0;
+            audio.play().catch(e => console.log("Fade in play failed", e));
+            const localFade = setInterval(function () {
+                if (audio.volume < 0.95) {
+                    audio.volume += 0.05;
+                } else {
+                    audio.volume = 1;
+                    clearInterval(localFade);
+                }
+            }, 50);
+        }
+
+        function updateMusic(indexh) {
+            const newBgmIndex = getBgmIndexForSlide(indexh);
+            
+            if (newBgmIndex !== currentBgmIndex) {
+                // Stop previous
+                if (currentBgmIndex > 0 && bgmTracks[currentBgmIndex]) {
+                    fadeOut(bgmTracks[currentBgmIndex]);
+                }
+                
+                // Start new
+                if (isBgmPlaying && bgmTracks[newBgmIndex]) {
+                    fadeIn(bgmTracks[newBgmIndex]);
+                }
+                currentBgmIndex = newBgmIndex;
+            }
+        }
+
+        Reveal.on('slidechanged', event => {
+            updateMusic(event.indexh);
+        });
+
         document.body.addEventListener('click', () => {
+            // Audio Context
             if (!audioContext) setupAudio();
+            
+            // Background Music
+            if (!isBgmPlaying) {
+                isBgmPlaying = true;
+                const h = Reveal.getIndices().h;
+                currentBgmIndex = getBgmIndexForSlide(h);
+                playMusic(currentBgmIndex);
+            }
         }, { once: true });
 
         window.addEventListener('resize', () => {
