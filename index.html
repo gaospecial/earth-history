@@ -85,6 +85,13 @@
             transform: scale(0.1) rotateX(90deg); /* Start small and flipped */
         }
 
+        /* Portrait images for Yujia Mountain */
+        .robot-img.portrait {
+            width: auto;
+            height: 350px; /* Increased height for portrait photos */
+            max-width: 250px; /* Limit width to fit multiple side-by-side */
+        }
+
         .fragment.visible .robot-img {
             animation: cyber-appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
@@ -113,8 +120,9 @@
     <!-- Background Music -->
     <audio id="bgm-1" src="musics/星辰下的远古记忆.mp3" loop preload="auto"></audio>
     <audio id="bgm-2" src="musics/Birth Of A Thousand Suns.mp3" loop preload="auto"></audio>
-    <audio id="bgm-3" src="musics/从石头到智能.mp3" loop preload="auto"></audio>
-    <audio id="bgm-4" src="musics/希望之树.mp3" loop preload="auto"></audio>
+    <audio id="bgm-3" src="musics/宇宙与家园.mp3" loop preload="auto"></audio>
+    <audio id="bgm-4" src="musics/从石头到智能.mp3" loop preload="auto"></audio>
+    <audio id="bgm-5" src="musics/希望之树.mp3" loop preload="auto"></audio>
 
     <canvas id="audio-visualizer"></canvas>
     <div class="reveal">
@@ -182,16 +190,35 @@
                 <section data-background-image="images/岩浆从火山口流淌下来.jpeg" data-background-opacity="0.7">
                     <h2>地球，正在被时间改写</h2>
                     <p>一颗正在被“书写”的星球</p>
+                    <div class="fragment" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <div class="mermaid">
+                            graph TD
+                            A[岩浆] -->|冷却凝固| B(岩浆岩)
+                            B -->|风化侵蚀搬运沉积| C(沉积岩)
+                            C -->|变质作用| D(变质岩)
+                            D -->|重熔再生| A
+                            B -->|变质作用| D
+                            D -->|风化侵蚀| C
+                            C -->|重熔再生| A
+                            B -->|重熔再生| A
+                        </div>
+                    </div>
                     <aside class="notes">
                         地球一开始，像一锅正在沸腾的汤。岩浆流淌，火山喷发，形成了最早的岩石。
+                        这里展示了岩石的三大类转化：岩浆岩、沉积岩和变质岩。它们在漫长的时间里互相转化，构成了我们脚下的大地。
                     </aside>
                 </section>
                 <section>
                     <h2>如果地球历史是一本书……</h2>
                     <p>假如地球历史是一本有 4600 页的厚书...</p>
                     <p class="fragment highlight" style="font-size:1.3em">人类出现在最后一页的最后一段。</p>
-                    <img data-src="images/migration-of-human.svg" class="fragment" style="height: 250px;">
-                    <aside class="notes">我们叫他“新生代”。</aside>
+                    <div class="fragment">
+                        <img data-src="images/migration-of-human.svg" style="height: 250px;">
+                        <p style="font-size: 0.6em; margin-top: 0;">现代智人全球扩张时间轴</p>
+                    </div>
+                    <aside class="notes">
+                        这张地图描绘了现代智人（Homo sapiens）从非洲发源地（红色区域）向全球扩散的壮丽征程。人类约在 10万年前 跨出非洲，随后沿海岸线于 7万年前 抵达东亚，并于 5万年前 进入大洋洲。在向北进入欧洲（约 4万年前）的同时，人类也跨越白令陆桥进入美洲，最终在约 1,500年前 完成了对新西兰等遥远孤岛的定居。这一过程不仅展示了人类地理范围的扩张，还体现了智人与早期古人类（如尼安德特人）在栖息地上的交叠与更替。
+                    </aside>
                 </section>
             </section>
 
@@ -201,25 +228,43 @@
                     <h2>从岩石到文明</h2>
                     <div style="display: flex; justify-content: space-around; align-items: center;">
                         <div class="fragment" data-fragment-index="1">
-                            <img data-src="images/石器.png" style="height: 150px;">
+                            <img data-src="images/石器.png" style="height: 250px; object-fit: contain;">
                             <p>岩石</p>
                         </div>
                         <div class="fragment" data-fragment-index="2">
-                             <img data-src="images/陶器.png" style="height: 150px;">
+                             <img data-src="images/陶器.png" style="height: 250px; object-fit: contain;">
                             <p>泥土</p>
                         </div>
                         <div class="fragment" data-fragment-index="3">
-                             <img data-src="images/古人生活场景.png" style="height: 150px;">
+                             <img data-src="images/古人生活场景.png" style="height: 250px; object-fit: contain;">
                             <p>农耕</p>
                         </div>
                     </div>
+                    <p class="sub-text" style="margin-top: 20px; font-style: italic;">摄于平顶山博物馆（裴李岗文明，距今 9000-7000 年）<br>国庆节参观留念</p>
                     <p class="sub-text">按“下”键继续探索</p>
+                    <aside class="notes">
+                        这些照片是我们国庆节带着子琦子瑞在平顶山博物馆拍摄的。
+                        裴李岗文明：
+                        裴李岗文化是主要分布在河南中部的早期新石器时代文化，距今约9000-7000年。
+                        这一时期，人类开始定居生活，从事以粟为主的农业生产，并饲养家畜（猪、狗）。
+                        他们制作精美的石磨盘、石磨棒进行粮食加工，并烧制红褐色的陶器（如三足钵、双耳壶）。
+                        这标志着人类从单纯的采集狩猎走向了农耕文明，是中华文明起源的重要阶段。
+                    </aside>
                 </section>
                 <section>
                     <h3>岩石，也会改变</h3>
                     <p>风、雨、冷热、植物的根，都在慢慢改变石头，把它变成土壤。</p>
-                    <img data-src="images/河流的搬运和冲积.png" style="height: 300px;">
-                    <aside class="notes">石头不是永远不变的。</aside>
+                    <div>
+                        <img data-src="images/河流的搬运和冲积.png" style="height: 300px;">
+                        <p style="font-size: 0.6em; margin-top: 0;">河流地貌系统全景图</p>
+                    </div>
+                    <aside class="notes">
+                        石头不是永远不变的。
+                        这张图将河流分为三个主要阶段，揭示了流水如何塑造地球表面：
+                        上游 (Upstream)： 发源于高耸的山地与丘陵。此时地势落差大，水流湍急，主要表现为侵蚀性。典型地貌包括深切的 V型谷、壮观的瀑布以及因河床坡度变化形成的辫状河。
+                        中游 (Midstream)： 河流进入坡度较缓的平原地带，流速减慢，泥沙开始沉积。在此阶段，河流变得弯曲，形成曲流河（蛇曲）和河漫滩。随着河道不断变迁，废弃的弯道会形成牛轭湖，周边还分布有支流和沼泽。
+                        下游 (Downstream)： 河流接近海洋，地势更加平坦。水流分散形成网状河，并在入海口处因流速骤降和泥沙大量堆积，塑造出广阔的冲积平原和向海伸展的河口三角洲。
+                    </aside>
                 </section>
                 <section>
                     <h3>土壤：生命的基础</h3>
@@ -240,13 +285,13 @@
                  <p>也在写历史</p>
                  <div class="robot-container">
                      <div class="fragment">
-                        <img class="robot-img" src="images/喻家山西坡的砂岩.jpg" alt="西坡砂岩">
+                        <img class="robot-img portrait" src="images/喻家山西坡的砂岩.jpg" alt="西坡砂岩">
                      </div>
                      <div class="fragment">
-                        <img class="robot-img" src="images/喻家山东坡砾岩.jpg" alt="东坡砾岩">
+                        <img class="robot-img portrait" src="images/喻家山东坡砾岩.jpg" alt="东坡砾岩">
                      </div>
                      <div class="fragment">
-                        <img class="robot-img" src="images/喻家山上的土壤剖面.jpg" alt="土壤剖面">
+                        <img class="robot-img portrait" src="images/喻家山上的土壤剖面.jpg" alt="土壤剖面">
                      </div>
                  </div>
                  <aside class="notes">
@@ -369,7 +414,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <!-- Add Mermaid support -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        
         Reveal.initialize({
             hash: true,
             slideNumber: 'c/t',
@@ -478,17 +527,19 @@
             1: document.getElementById('bgm-1'),
             2: document.getElementById('bgm-2'),
             3: document.getElementById('bgm-3'),
-            4: document.getElementById('bgm-4')
+            4: document.getElementById('bgm-4'),
+            5: document.getElementById('bgm-5')
         };
         
         let currentBgmIndex = 0;
         let isBgmPlaying = false;
 
         function getBgmIndexForSlide(h) {
-            if (h <= 2) return 1;
-            if (h <= 5) return 2;
-            if (h <= 7) return 3;
-            return 4;
+            if (h <= 2) return 1; // Cover, Opening, Soul Questioning
+            if (h <= 3) return 2; // Chapter 1: Universe (Big Bang)
+            if (h <= 4) return 3; // Chapter 2: Rock -> Soil -> Civilization (Universe & Home)
+            if (h <= 6) return 4; // Chapter 3: Quartz to Chip & AI
+            return 5; // Closing
         }
 
         function playMusic(index) {
